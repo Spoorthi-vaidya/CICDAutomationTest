@@ -38,4 +38,4 @@ jobs:
         run: |
           echo Add other actions to build,
           echo test, and deploy your project.
-          echo ${ IICS_USERNAME} , ${ IICS_PASSWORD}
+          echo ${{ IICS_USERNAME}} , ${{ IICS_PASSWORD}}
