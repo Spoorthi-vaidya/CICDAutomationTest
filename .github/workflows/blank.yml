@@ -10,8 +10,12 @@ on:
   pull_request:
     branches: [ "master" ]
 
+
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
+env:
+  IICS_USERNAME: ${{ secrets.IICS_Username }}
+  IICS_PASSWORD: ${{ secrets.IICS_Password }}
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -34,3 +38,4 @@ jobs:
         run: |
           echo Add other actions to build,
           echo test, and deploy your project.
+          echo ${ IICS_USERNAME} , ${ IICS_PASSWORD}
