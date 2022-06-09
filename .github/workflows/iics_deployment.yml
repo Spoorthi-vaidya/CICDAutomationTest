@@ -71,10 +71,10 @@ jobs:
     steps:
       - uses: actions/checkout@v3
         with:
-          repository: niravhjoshi/TestApp_IICS
+          repository: Spoorthi-vaidya/CICDAutomationTest
           ref: UAT
           token: ${{ secrets.GH_TOKEN }}
-          path: TestApp_IICS
+          path: CICDAutomationTest
 
       - uses: actions/checkout@v3
         with:
@@ -91,13 +91,13 @@ jobs:
             pip install requests
 
       - name: Set default username
-        run: git config --global user.email "niravhjoshi@outlook.com"; git config --global user.name "Nirav Joshi"
+        run: git config --global user.email "spoorthivaidya@gmail.com"; git config --global user.name "SpoorthiVaidya"
 
       - name: Commit changes to UAT
-        run: cd ./TestApp_IICS; git fetch --all; git cherry-pick --strategy=recursive -X theirs ${COMMIT_HASH}; git push
+        run: cd ./CICDAutomationTest; git fetch --all; git cherry-pick --strategy=recursive -X theirs ${COMMIT_HASH}; git push
 
       - name: Get latest UAT commit hash
-        run: cd ./TestApp_IICS; git pull; echo "UAT_COMMIT_HASH=$(git log -1 --pretty=format:%H)" >> $GITHUB_ENV
+        run: cd ./CICDAutomationTest; git pull; echo "UAT_COMMIT_HASH=$(git log -1 --pretty=format:%H)" >> $GITHUB_ENV
       
       - name: Login to UAT
         run: python ./iics-promotion-pipeline/scripts/infa_login.py
