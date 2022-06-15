@@ -1,3 +1,33 @@
+Skip to content
+Search or jump to…
+Pull requests
+Issues
+Marketplace
+Explore
+ 
+@Spoorthi-vaidya 
+Spoorthi-vaidya
+/
+CICDAutomationTest
+Public
+Code
+Issues
+Pull requests
+Actions
+Projects
+Wiki
+Security
+Insights
+Settings
+CICDAutomationTest/.github/workflows/test.yml
+@Spoorthi-vaidya
+Spoorthi-vaidya Create test.yml
+Latest commit 590d6fd 1 minute ago
+ History
+ 1 contributor
+110 lines (86 sloc)  3.87 KB
+
+
 # This sample source code is offered only as an example of what can or might be built using the IICS Github APIs, 
 # and is provided for educational purposes only. This source code is provided "as-is" 
 # and without representations or warrantees of any kind, is not supported by Informatica.
@@ -53,58 +83,6 @@ jobs:
         run: |
             python -m pip install --upgrade pip
             pip install -r requirements.txt
-
-      # Runs a single command using the runners shell
-      - name: Login to development
-        run: python ./scripts/infa_login.py
-
-      - name: Test Committed Mapping Tasks
-        run: python ./scripts/infa_get_updates.py
-
-  uat_commit:
-    name: Complete uat promotion
-    environment:
-      name: uat
-    needs: dev_build
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@v3
-        with:
-          repository: Spoorthi-vaidya/CICDAutomationTest
-          ref: UAT
-          token: ${{ secrets.GH_TOKEN }}
-          path: CICDAutomationTest
-
-      - uses: actions/checkout@v3
-        with:
-          path: iics-promotion-pipeline
-
-      # Install python and dependent modules
-      - uses: actions/setup-python@v3
-        with:
-          python-version: '3.x'
-      
-      - name: Install python modules
-        run: |
-            python -m pip install --upgrade pip
-            pip install requests
-      
       - name: create input.json file
         run: |
             echo '{"IICS_DEV_username":"${{ secrets.IICS_USERNAME }}","IICS_DEV_password":"${{ secrets.IICS_PASSWORD }}","IICS_DEV_region":"us","Object_TagValue":"test1","IICS_UAT_username":"${{ secrets.UAT_IICS_USERNAME }}","IICS_UAT_password":"${{ secrets.UAT_IICS_USERNAME }}","IICS_UAT_region":"us"}
-     
-     - name: Set default username
-        run: git config --global user.email "spoorthivaidya@gmail.com"; git config --global user.name "SpoorthiVaidya"
-
-      - name: Commit changes to UAT
-        run: cd ./CICDAutomationTest; git fetch --all; git cherry-pick --strategy=recursive -X theirs ${COMMIT_HASH}; git push
-
-      - name: Get latest UAT commit hash
-        run: cd ./CICDAutomationTest; git pull; echo "UAT_COMMIT_HASH=$(git log -1 --pretty=format:%H)" >> $GITHUB_ENV
-      
-      - name: Login to UAT
-        run: python ./iics-promotion-pipeline/scripts/infa_login.py
-
-      - name: Sync and test UAT deployment
-        run: python ./iics-promotion-pipeline/scripts/infa_update_and_test.py
