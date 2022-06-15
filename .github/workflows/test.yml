@@ -1,33 +1,3 @@
-Skip to content
-Search or jump to…
-Pull requests
-Issues
-Marketplace
-Explore
- 
-@Spoorthi-vaidya 
-Spoorthi-vaidya
-/
-CICDAutomationTest
-Public
-Code
-Issues
-Pull requests
-Actions
-Projects
-Wiki
-Security
-Insights
-Settings
-CICDAutomationTest/.github/workflows/test.yml
-@Spoorthi-vaidya
-Spoorthi-vaidya Create test.yml
-Latest commit 590d6fd 1 minute ago
- History
- 1 contributor
-110 lines (86 sloc)  3.87 KB
-
-
 # This sample source code is offered only as an example of what can or might be built using the IICS Github APIs, 
 # and is provided for educational purposes only. This source code is provided "as-is" 
 # and without representations or warrantees of any kind, is not supported by Informatica.
