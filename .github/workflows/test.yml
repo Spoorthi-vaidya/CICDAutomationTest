@@ -1,10 +1,3 @@
-# This sample source code is offered only as an example of what can or might be built using the IICS Github APIs, 
-# and is provided for educational purposes only. This source code is provided "as-is" 
-# and without representations or warrantees of any kind, is not supported by Informatica.
-# Users of this sample code in whole or in part or any extraction or derivative of it 
-# assume all the risks attendant thereto, and Informatica disclaims any/all liabilities 
-# arising from any such use to the fullest extent permitted by law.
-
 name: test
 
 # Controls when the workflow will run
@@ -53,6 +46,10 @@ jobs:
         run: |
             python -m pip install --upgrade pip
             pip install -r requirements.txt
+      
       - name: create input.json file
-        run: |
-            echo '{"IICS_DEV_username":"${{ secrets.IICS_USERNAME }}","IICS_DEV_password":"${{ secrets.IICS_PASSWORD }}","IICS_DEV_region":"us","Object_TagValue":"test1","IICS_UAT_username":"${{ secrets.UAT_IICS_USERNAME }}","IICS_UAT_password":"${{ secrets.UAT_IICS_USERNAME }}","IICS_UAT_region":"us"}
+        id: create-json
+        uses: jsdaniell/create-json@1.1.2
+        with:
+            name:"input.json"
+            json:'{"IICS_DEV_username":"${{ secrets.IICS_USERNAME }}","IICS_DEV_password":"${{ secrets.IICS_PASSWORD }}","IICS_DEV_region":"us","Object_TagValue":"test1","IICS_UAT_username":"${{ secrets.UAT_IICS_USERNAME }}","IICS_UAT_password":"${{ secrets.UAT_IICS_USERNAME }}","IICS_UAT_region":"us"}
