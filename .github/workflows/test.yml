@@ -9,6 +9,7 @@ on:
         type: string
         required: true
 
+
 env:
   IICS_LOGIN_URL: https://dm-us.informaticacloud.com
   IICS_POD_URL: https://na1.dm-us.informaticacloud.com/saas
