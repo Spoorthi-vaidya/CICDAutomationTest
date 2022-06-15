@@ -5,7 +5,7 @@
 # assume all the risks attendant thereto, and Informatica disclaims any/all liabilities 
 # arising from any such use to the fullest extent permitted by law.
 
-name: DEPLOY_MAPPING_TASK
+name: test
 
 # Controls when the workflow will run
 on:
